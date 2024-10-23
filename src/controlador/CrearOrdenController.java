@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import modelo.Orden;
 
 import java.time.LocalDate;
 
@@ -24,15 +25,15 @@ public class CrearOrdenController {
 
     @FXML
     void initialize(){
-        modelFactoryController = ModelFactoryController.getInstance();
+        /*modelFactoryController = ModelFactoryController.getInstance();
         cbClientes.setItems(modelFactoryController.getClientes());
 
         tfId.setText(modelFactoryController.generarId());
-        tfId.setDisable(true);
+        tfId.setDisable(true);*/
     }
 
 
-    public void onClickRegistrar(ActionEvent actionEvent) {
+    /*public void onClickRegistrar(ActionEvent actionEvent) {
         Orden newOrden = new Orden();
         newOrden.setId(tfId.getText());
         newOrden.setCliente(modelFactoryController.buscarCliente(cbClientes.getValue()));
@@ -45,12 +46,14 @@ public class CrearOrdenController {
         if(!resultado){
             mostrarMensaje();
         }
+    }*/
+
+    public void onClickCancelar(ActionEvent actionEvent) {
 
 
     }
 
-    public void onClickCancelar(ActionEvent actionEvent) {
-
+    public void onClickRegistrar(ActionEvent actionEvent) {
 
     }
 }

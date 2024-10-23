@@ -1,5 +1,7 @@
 package controlador;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import modelo.Orden;
+import modelo.Pago;
+import modelo.enums.Estado;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -43,21 +47,35 @@ public class HomeController {
     @FXML
     void initialize(){
         modelFactoryController = ModelFactoryController.getInstance();
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("producto"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("pago"));
+
+        this.colId.setCellValueFactory(new PropertyValueFactory<>("idOrden"));
+        this.colProducto.setCellValueFactory(new PropertyValueFactory<>("producto"));
+        this.colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        this.colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        this.colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        this.colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcionAveria"));
+        this.colPago.setCellValueFactory(new PropertyValueFactory<>("pago"));
 
 
         ordeSelecionada = tbOrdenes.getSelectionModel().getSelectedItem();
+
+        tbOrdenes.setItems(FXCollections.observableList(modelFactoryController.getOrdenes()));
+
+        tbOrdenes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                ordeSelecionada = newValue;
+                mostrarInfoOrden();
+            }
+        });
+    }
+
+    private void mostrarInfoOrden() {
+
     }
 
 
     public void onClickCrearOrden(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/vista/crear-orden.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/vista/crear-orden.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 300);
         Stage stage = new Stage();
         stage.setTitle("Crear orden");
@@ -69,8 +87,8 @@ public class HomeController {
     public void onClickBuscar(ActionEvent actionEvent) {
     }
 
-    public void onClickCrearCliente(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/vista/crear-cliente.fxml"));
+    public void onClickCrearCliente(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/vista/crear-cliente.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 300);
         Stage stage = new Stage();
         stage.setTitle("Crear Cliente");
