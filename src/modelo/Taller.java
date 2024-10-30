@@ -18,8 +18,10 @@ import static controlador.TallerController.INSTACE;
 @Getter
 public class Taller {
 
+    private Orden ordenSeleccionada;
     public Cola<Orden> colaRepaciones;
     public List<Usuario>usuarios;
+    public ArrayList<Cliente>clientes;
     public List<Producto> productos;
     @Getter
     public ArrayList<Orden> ordenes;
@@ -30,30 +32,39 @@ public class Taller {
         this.usuarios = new ArrayList<>();
         this.productos = new ArrayList<>();
         this.ordenes = new ArrayList<>();
-        ordenes.add(new Orden("01", null, null, "Computador", LocalDate.now(), Estado.EN_REPARACION, "descripcion"));
+        this.clientes = new ArrayList<>();
+        clientes.add(new Cliente("41922751", "Carlos", "carlos@mail.com", "314", "Calle 9 #14-34"));
+        ordenes.add(new Orden("OR01", null, null, "Computador", LocalDate.now(), Estado.EN_REPARACION, "descripcion"));
+        ordenes.add(new Orden("OR02", null, null, "Televisor", LocalDate.now(), Estado.EN_REPARACION, "descripcion"));
     }
 
     public boolean crearOrden(Orden orden){
 
-    NodoCola<Orden> aux = colaRepaciones.buscarNodoCola(orden);
+    //NodoCola<Orden> aux = colaRepaciones.buscarNodoCola(orden);
 
-    if (aux == null){
+    /*if (aux == null){
         colaRepaciones.encolar(orden);
-        SqlQuery.crearOrden(orden);
+        ordenes.add(orden);
+        //SqlQuery.crearOrden(orden);
         return true;
     }
-        return false;
+        return false;*/
+        ordenes.add(orden);
+        return true;
     }
 
     public boolean cambiarEstadoOrden(String idOrden, Estado estadoNuevo) {
 
 
-        if (colaRepaciones.cambiarEstadoOrden(idOrden,estadoNuevo)){
+        /*if (colaRepaciones.cambiarEstadoOrden(idOrden,estadoNuevo)){
 
             SqlQuery.cambiarEstadoOrden(idOrden,estadoNuevo);
             return true;
         }
-        return false;
+        return false;*/
+
+        buscarOrden(idOrden).setEstado(estadoNuevo);
+        return true;
     }
 
     public boolean tomarOrden(String idTecnico, String idOrden) {
@@ -90,7 +101,7 @@ public class Taller {
         }
         return false;
     }
-
+/*
     public boolean registrarCliente(Cliente cliente) {
 
         Usuario usuario = usuarios.stream().filter(cliente1 -> cliente1.getUser().equals(cliente.getUser())).findFirst().orElse(null);
@@ -104,9 +115,9 @@ public class Taller {
             return true;
         }
         return false;
-    }
+    }*/
 
-    public boolean actualizarCliente(Cliente datosNuevos, String idCliente) {
+    /*public boolean actualizarCliente(Cliente datosNuevos, String idCliente) {
         // Buscar el cliente que se va a actualizar
         Cliente clienteActualizado = null;
         for (Usuario usuario : usuarios) {
@@ -140,7 +151,7 @@ public class Taller {
         }
 
         return false;
-    }
+    }*/
 
     public boolean actualizaProducto(Producto datosNuevos, String idProducto) {
         // Validar si el producto a actualizar existe en la lista (opcional)
@@ -163,6 +174,27 @@ public class Taller {
 
         // Retornar el resultado de la actualización
         return actualizado;
+    }
+
+
+    public Cliente buscarCliente(String idCliente) {
+        return clientes.stream().filter(cliente -> cliente.getIdCliente().equals(idCliente)).findFirst().orElse(null);
+    }
+    public Orden buscarOrden(String idOrden) {
+        return ordenes.stream().filter(orden -> orden.getIdOrden().equals(idOrden)).findFirst().orElse(null);
+    }
+
+    public String generarId() {
+        return "OR" + (ordenes.size() + 1);
+    }
+
+    public boolean crearCliente(Cliente newCliente){
+        Cliente clienteEncontrado = buscarCliente(newCliente.getIdCliente());
+        if(clienteEncontrado == null){
+            getClientes().add(newCliente);
+            return true;
+        }
+        return false;
     }
 
 

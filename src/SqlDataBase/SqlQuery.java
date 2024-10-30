@@ -66,7 +66,8 @@ public class SqlQuery {
                     user = resultSet2.getString("user");
                     password = resultSet2.getString("password");
                 }
-                Cliente cliente = new Cliente(idCliente,nombre,email,telefono,direccion,user,password);
+                //Cliente cliente = new Cliente(idCliente,nombre,email,telefono,direccion,user,password);
+                Cliente cliente = new Cliente(idCliente,nombre,email,telefono,direccion);
 
                 // Tercera consulta para obtener el producto
                 String sql3 = "SELECT * FROM bd_reparatodo.producto " +
@@ -229,8 +230,8 @@ public class SqlQuery {
                 stmt.setString(2, cliente.getNombre());
                 stmt.setString(3, cliente.getTelefono());
                 stmt.setString(4, cliente.getDireccion());
-                stmt.setString(5, cliente.getUser());
-                stmt.setString(6, cliente.getPassword());
+                /*stmt.setString(5, cliente.getUser());
+                stmt.setString(6, cliente.getPassword());*/
 
                 int filasInsertadas = stmt.executeUpdate();
                 if (filasInsertadas > 0) {
@@ -254,8 +255,8 @@ public class SqlQuery {
                 stmt.setString(2, datosNuevos.getEmail());
                 stmt.setString(3, datosNuevos.getTelefono());
                 stmt.setString(4, datosNuevos.getDireccion());
-                stmt.setString(5, datosNuevos.getUser());
-                stmt.setString(6, datosNuevos.getPassword());
+                /*stmt.setString(5, datosNuevos.getUser());
+                stmt.setString(6, datosNuevos.getPassword());*/
                 stmt.setString(7, idCliente);
 
                 int filasActualizadas = stmt.executeUpdate();

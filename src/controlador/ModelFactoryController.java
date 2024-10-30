@@ -7,9 +7,6 @@ import modelo.Producto;
 import modelo.enums.Estado;
 import servicios.IModelFactoryService;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static controlador.TallerController.INSTACE;
@@ -50,15 +47,15 @@ public class ModelFactoryController implements IModelFactoryService {
         return INSTACE.getModel().registrarPago(idOrden,pago);
     }
 
-    @Override
+    /*@Override
     public boolean registrarCliente(Cliente cliente) {
         return INSTACE.getModel().registrarCliente(cliente);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean actualizarCliente(Cliente datosNuevos, String idCliente) {
         return INSTACE.getModel().actualizarCliente(datosNuevos,idCliente);
-    }
+    }*/
 
     @Override
     public boolean actualizaProducto(Producto datosNuevos, String idProducto) {
@@ -66,8 +63,38 @@ public class ModelFactoryController implements IModelFactoryService {
     }
 
     @Override
+    public Cliente buscarCliente(String idCliente) {
+        return INSTACE.getModel().buscarCliente(idCliente);
+    }
+
+    @Override
     public ArrayList<Orden> getOrdenes() {
         return INSTACE.getModel().getOrdenes();
+    }
+
+    @Override
+    public ArrayList<Cliente> getClientes() {
+        return INSTACE.getModel().getClientes();
+    }
+
+    @Override
+    public String generarId() {
+        return INSTACE.getModel().generarId();
+    }
+
+    @Override
+    public Orden getOrdenSeleccionada() {
+        return INSTACE.getModel().getOrdenSeleccionada();
+    }
+
+    @Override
+    public void setOrdenSeleccionada(Orden ordeSelecionada) {
+        INSTACE.getModel().setOrdenSeleccionada(ordeSelecionada);
+    }
+
+    @Override
+    public boolean crearCliente(Cliente newCliente) {
+        return INSTACE.getModel().crearCliente(newCliente);
     }
 
 

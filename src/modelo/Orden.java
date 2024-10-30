@@ -21,6 +21,8 @@ public class Orden {
     public Estado estado;
     public String descripcionAveria;
 
+    public Orden(){}
+
 
 
 }

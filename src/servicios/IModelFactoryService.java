@@ -18,13 +18,23 @@ public interface IModelFactoryService {
     boolean registrarPago(String idOrden, Pago pago);
 
     //Cliente
-    boolean registrarCliente(Cliente cliente);
-    boolean actualizarCliente(Cliente datosNuevos,String idCliente);
+    /*boolean registrarCliente(Cliente cliente);
+    boolean actualizarCliente(Cliente datosNuevos,String idCliente);*/
 
     //Producto
     boolean actualizaProducto(Producto datosNuevos,String idProducto);
 
+    Cliente buscarCliente(String idCliente);
+
     ArrayList<Orden> getOrdenes();
 
+    ArrayList<Cliente> getClientes();
 
+    String generarId();
+
+    Orden getOrdenSeleccionada();
+
+    void setOrdenSeleccionada(Orden ordeSelecionada);
+
+    boolean crearCliente(Cliente newCliente);
 }

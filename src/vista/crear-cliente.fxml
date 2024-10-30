@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CrearClienteController   ">
+<AnchorPane fx:id="btnRegistrar" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CrearClienteController">
    <children>
-      <Label layoutX="195.0" layoutY="14.0" text="Registro de cliente">
+      <Label layoutX="160.0" layoutY="14.0" text="Registro de cliente" textFill="#170e90">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
       <Label layoutX="115.0" layoutY="86.0" text="Cedula">
@@ -39,17 +38,17 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="349.0" layoutY="87.0" />
-      <TextField layoutX="349.0" layoutY="125.0" />
-      <TextField layoutX="349.0" layoutY="170.0" />
-      <TextField layoutX="349.0" layoutY="215.0" />
-      <TextField layoutX="349.0" layoutY="262.0" />
-      <Button layoutX="142.0" layoutY="333.0" mnemonicParsing="false" style="-fx-background-color: #170e90;" text="Registrar" textFill="WHITE">
+      <TextField fx:id="tfCedula" layoutX="349.0" layoutY="87.0" />
+      <TextField fx:id="tfNombre" layoutX="349.0" layoutY="125.0" />
+      <TextField fx:id="tfDireccion" layoutX="349.0" layoutY="170.0" />
+      <TextField fx:id="tfTelefono" layoutX="349.0" layoutY="215.0" />
+      <TextField fx:id="tfEmail" layoutX="349.0" layoutY="262.0" />
+      <Button fx:id="btnRegistrarCliente" layoutX="142.0" layoutY="333.0" mnemonicParsing="false" onAction="#onClickRegistrar" style="-fx-background-color: #170e90;" text="Registrar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="349.0" layoutY="333.0" mnemonicParsing="false" style="-fx-background-color: #170e90;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="btnCancelar" layoutX="349.0" layoutY="333.0" mnemonicParsing="false" onAction="#onClickCancelar" style="-fx-background-color: #170e90;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
